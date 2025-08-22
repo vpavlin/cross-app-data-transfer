@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const blob = new Blob([csvContent], { type: 'text/csv' });
 
         // Open the receiver page in a new tab or window
-        const receiverWindow = window.open('http://localhost:8001/receiver.html');
+        const receiverWindow = window.open('http://localhost:8001/receiver.html?expectedOrigin='+window.location.origin, '_blank');
         
         //sleep with await promise for 1s
         await new Promise(resolve => setTimeout(resolve, 1000));

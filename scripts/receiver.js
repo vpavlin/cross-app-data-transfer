@@ -1,6 +1,15 @@
 window.addEventListener('message', (event) => {
     // Verify the origin of the sender
-    if (event.origin !== 'http://localhost:8000') {
+    const url = new URL(window.location.href);
+
+    // Create a URLSearchParams object from the query string
+    const params = new URLSearchParams(url.search);
+
+    // Access a specific parameter
+    const expectedOrigin = params.get('expectedOrigin');
+    
+    if (event.origin !== expectedOrigin) {
+        document.getElementById('status').textContent = 'Expected origin: ' + expectedOrigin +', but received ' + event.origin;
         console.error('Origin not allowed:', event.origin);
         return;
     }
