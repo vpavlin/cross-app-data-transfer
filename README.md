@@ -28,19 +28,32 @@ html-blob-transfer
 2. **Open the Project**: 
    Navigate to the project directory.
 
-3. **Open Sender Page**: 
-   Open `sender.html` in your web browser.
+3. **Start Sender hosting**: 
+   Start `sender`:
+
+   ```
+   python3 -m http.server 8000
+   ```
+
+   and open http://localhost:8000/sender.html
+
+4. **Start Receiver hosting**
+   In separate terminal run
+
+   ```
+   python3 -m http.server 8001
+   ```
 
 4. **Send Data**: 
-   Click the "Send" button to create a mock CSV blob and open the receiver page.
+   Click the "Send" button in Sender (port `8000`) to create a mock CSV blob and open the receiver page.
 
 5. **View Received Data**: 
    The receiver page will display the content of the blob sent from the sender page.
 
 ## Usage
 
-- The sender page generates a mock CSV file and creates a blob URL.
-- The blob URL is passed to the receiver page, which fetches and displays the CSV content.
+- The sender page generates a mock CSV file and opens the receiver page.
+- The content is passed using `postMessage` to the receiver page, which parses and displays the CSV content.
 
 ## License
 
